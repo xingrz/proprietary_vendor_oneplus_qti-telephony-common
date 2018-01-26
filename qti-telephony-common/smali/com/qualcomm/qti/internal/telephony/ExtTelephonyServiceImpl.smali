@@ -2160,28 +2160,11 @@
 .end method
 
 .method public isTestCard(I)Z
-    .locals 2
+    .locals 1
 
-    invoke-static {p1}, Lcom/android/internal/telephony/PhoneFactory;->getPhone(I)Lcom/android/internal/telephony/Phone;
+    const/4 v0, 0x0
 
-    move-result-object v0
-
-    if-eqz v0, :cond_0
-
-    invoke-virtual {v0}, Lcom/android/internal/telephony/Phone;->is_test_card()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    const/4 v1, 0x1
-
-    return v1
-
-    :cond_0
-    const/4 v1, 0x0
-
-    return v1
+    return v0
 .end method
 
 .method public isVendorApkAvailable(Ljava/lang/String;)Z
