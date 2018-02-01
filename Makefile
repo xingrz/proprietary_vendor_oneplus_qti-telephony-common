@@ -24,6 +24,7 @@ $(TARGET): $(BYTECODE)
 decode: $(BYTECODE)
 
 $(BYTECODE): $(SOURCE)
+	rm -rf $@
 	apktool decode \
 		--no-debug-info \
 		--output $@ \
