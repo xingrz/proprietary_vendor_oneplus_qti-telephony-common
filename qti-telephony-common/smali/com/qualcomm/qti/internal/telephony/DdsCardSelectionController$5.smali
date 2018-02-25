@@ -456,6 +456,28 @@
 
     move-result-object v7
 
+    const/16 v8, 0x16
+
+    const/4 v9, -0x1
+
+    invoke-virtual {v7, v8, v4, v9}, Landroid/os/Handler;->obtainMessage(III)Landroid/os/Message;
+
+    move-result-object v7
+
+    invoke-virtual {v6, v7}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$5;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
+
+    invoke-static {v6}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-get6(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)Landroid/os/Handler;
+
+    move-result-object v6
+
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$5;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
+
+    invoke-static {v7}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-get6(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)Landroid/os/Handler;
+
+    move-result-object v7
+
     const/16 v8, 0x18
 
     const/4 v9, -0x1
