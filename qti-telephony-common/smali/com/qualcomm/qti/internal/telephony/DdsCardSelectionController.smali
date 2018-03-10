@@ -2034,16 +2034,6 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
 
-    if-eqz v0, :cond_0
-
-    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
-
-    move-result-object v3
-
-    aget v4, v2, v5
-
-    invoke-virtual {v3, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->setDefaultDataSubId(I)V
-
     :cond_0
     const-string/jumbo v3, "true"
 
