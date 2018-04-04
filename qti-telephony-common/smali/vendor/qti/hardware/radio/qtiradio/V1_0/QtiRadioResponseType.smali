@@ -29,35 +29,28 @@
 
     const/4 v0, 0x0
 
-    and-int/lit8 v2, p0, 0x0
-
-    if-nez v2, :cond_0
-
     const-string/jumbo v2, "SOLICITED"
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    const/4 v0, 0x0
-
-    :cond_0
     and-int/lit8 v2, p0, 0x1
 
     const/4 v3, 0x1
 
-    if-ne v2, v3, :cond_1
+    if-ne v2, v3, :cond_0
 
     const-string/jumbo v2, "SOLICITED_ACK"
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    or-int/lit8 v0, v0, 0x1
+    const/4 v0, 0x1
 
-    :cond_1
+    :cond_0
     and-int/lit8 v2, p0, 0x2
 
     const/4 v3, 0x2
 
-    if-ne v2, v3, :cond_2
+    if-ne v2, v3, :cond_1
 
     const-string/jumbo v2, "SOLICITED_ACK_EXP"
 
@@ -65,8 +58,8 @@
 
     or-int/lit8 v0, v0, 0x2
 
-    :cond_2
-    if-eq p0, v0, :cond_3
+    :cond_1
+    if-eq p0, v0, :cond_2
 
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -96,7 +89,7 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    :cond_3
+    :cond_2
     const-string/jumbo v2, " | "
 
     invoke-static {v2, v1}, Ljava/lang/String;->join(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;

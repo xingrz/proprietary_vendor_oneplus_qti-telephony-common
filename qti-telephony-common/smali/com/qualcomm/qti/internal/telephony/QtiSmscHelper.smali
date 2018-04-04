@@ -154,7 +154,7 @@
 
     const/4 v4, -0x1
 
-    invoke-virtual {p0, v3, p1, v4}, Landroid/os/Handler;->obtainMessage(III)Landroid/os/Message;
+    invoke-virtual {p0, v3, p1, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSmscHelper;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v3
 
@@ -426,7 +426,7 @@
 
     const/4 v4, -0x1
 
-    invoke-virtual {p0, v3, p1, v4}, Landroid/os/Handler;->obtainMessage(III)Landroid/os/Message;
+    invoke-virtual {p0, v3, p1, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSmscHelper;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v3
 

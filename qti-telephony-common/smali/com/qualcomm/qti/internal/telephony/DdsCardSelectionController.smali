@@ -77,6 +77,12 @@
 
 .field private static final FIRST_BOOT:Ljava/lang/String; = "persist.radio.firstboot"
 
+.field private static final FORBID_INDEX:I = 0x4
+
+.field private static final ICCID_INDEX:I = 0x1
+
+.field private static final IMSI_INDEX:I = 0x2
+
 .field static final LOG_TAG:Ljava/lang/String; = "DdsCardSelectionController"
 
 .field private static final NOT_PROVISIONED:I = 0x0
@@ -101,11 +107,19 @@
 
 .field private static final OEM_SAR_FRANCE:I = 0x7
 
+.field private static final PERMIT_INDEX:I = 0x3
+
+.field private static final PILOT_INDEX:I = 0x5
+
 .field private static final PROVISIONED:I = 0x1
+
+.field private static final SLOT_INDEX:I = 0x0
 
 .field private static final SOFTSIM_DISABLE_EVENT_DELAY:I = 0xfa0
 
-.field private static final SOFT_SIM:Ljava/lang/String; = "softsim_iccid"
+.field private static final SOFTSIM_URL:Landroid/net/Uri;
+
+.field private static final SOFT_SIM:Landroid/net/Uri;
 
 .field private static final VDBG:Z = false
 
@@ -216,6 +230,8 @@
 .field private mWifiManager:Landroid/net/wifi/WifiManager;
 
 .field oldAction:I
+
+.field private softSimEnable:Z
 
 
 # direct methods
@@ -383,7 +399,15 @@
     return-void
 .end method
 
-.method static synthetic -wrap12(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Landroid/os/AsyncResult;Ljava/lang/Integer;)V
+.method static synthetic -wrap12(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;I)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->oemSetDefaultDataSubId(I)V
+
+    return-void
+.end method
+
+.method static synthetic -wrap13(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Landroid/os/AsyncResult;Ljava/lang/Integer;)V
     .locals 0
 
     invoke-direct {p0, p1, p2}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->onGetIccCardStatusDone(Landroid/os/AsyncResult;Ljava/lang/Integer;)V
@@ -391,7 +415,7 @@
     return-void
 .end method
 
-.method static synthetic -wrap13(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
+.method static synthetic -wrap14(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
     .locals 0
 
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->processMbnActivatedDone()V
@@ -399,7 +423,7 @@
     return-void
 .end method
 
-.method static synthetic -wrap14(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;I)V
+.method static synthetic -wrap15(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;I)V
     .locals 0
 
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->processSimStatusChange(I)V
@@ -407,7 +431,7 @@
     return-void
 .end method
 
-.method static synthetic -wrap15(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
+.method static synthetic -wrap16(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
     .locals 0
 
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->processSoftSimIccidChange()V
@@ -415,7 +439,7 @@
     return-void
 .end method
 
-.method static synthetic -wrap16(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;IILjava/lang/String;)V
+.method static synthetic -wrap17(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;IILjava/lang/String;)V
     .locals 0
 
     invoke-direct {p0, p1, p2, p3}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->updateCurrentCardStatus(IILjava/lang/String;)V
@@ -534,143 +558,203 @@
 
     sput-object v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mTMOIccidList:Ljava/util/ArrayList;
 
+    const-string/jumbo v0, "content://com.redteamobile.provider"
+
+    invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->SOFTSIM_URL:Landroid/net/Uri;
+
+    const-string/jumbo v0, "content://com.redteamobile.provider/softsim/iccid"
+
+    invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->SOFT_SIM:Landroid/net/Uri;
+
     return-void
 .end method
 
 .method private constructor <init>(Landroid/content/Context;Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;[Lcom/android/internal/telephony/CommandsInterface;[Lcom/android/internal/telephony/Phone;)V
-    .locals 11
-
-    const/4 v6, 0x3
-
-    const/4 v10, 0x1
-
-    const/4 v9, 0x0
-
-    const/4 v7, 0x2
-
-    const/4 v8, 0x0
+    .locals 9
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    sget v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mNumPhones:I
+    sget v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mNumPhones:I
 
-    new-array v4, v4, [Lcom/android/internal/telephony/RadioCapability;
+    new-array v5, v5, [Lcom/android/internal/telephony/RadioCapability;
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mRadioCapability:[Lcom/android/internal/telephony/RadioCapability;
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mRadioCapability:[Lcom/android/internal/telephony/RadioCapability;
 
-    iput-object v9, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWifiManager:Landroid/net/wifi/WifiManager;
+    const/4 v5, 0x0
 
-    iput-object v9, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWifiConfig:Landroid/net/wifi/WifiConfiguration;
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWifiManager:Landroid/net/wifi/WifiManager;
 
-    sget v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mNumPhones:I
+    const/4 v5, 0x0
 
-    new-array v4, v4, [Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWifiConfig:Landroid/net/wifi/WifiConfiguration;
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
+    sget v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mNumPhones:I
 
-    iput-boolean v8, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isCtaSwitchNotOn:Z
+    new-array v5, v5, [Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
 
-    iput-boolean v8, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQcRilHookReady:Z
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
 
-    iput-object v9, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mIccRecords:Lcom/android/internal/telephony/uicc/IccRecords;
+    const/4 v5, 0x0
 
-    const/4 v4, 0x6
+    iput-boolean v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isCtaSwitchNotOn:Z
 
-    new-array v4, v4, [[I
+    const/4 v5, 0x0
+
+    iput-boolean v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQcRilHookReady:Z
+
+    const/4 v5, 0x0
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mIccRecords:Lcom/android/internal/telephony/uicc/IccRecords;
+
+    const/4 v5, 0x0
+
+    iput-boolean v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->softSimEnable:Z
 
     const/4 v5, 0x6
 
-    filled-new-array {v6, v5}, [I
+    new-array v5, v5, [[I
 
-    move-result-object v5
+    const/4 v6, 0x3
 
-    aput-object v5, v4, v8
+    const/4 v7, 0x6
 
-    filled-new-array {v7, v10}, [I
+    filled-new-array {v6, v7}, [I
 
-    move-result-object v5
+    move-result-object v6
 
-    aput-object v5, v4, v10
+    const/4 v7, 0x0
 
-    filled-new-array {v7, v7}, [I
+    aput-object v6, v5, v7
 
-    move-result-object v5
+    const/4 v6, 0x2
 
-    aput-object v5, v4, v7
+    const/4 v7, 0x1
 
-    filled-new-array {v7, v6}, [I
+    filled-new-array {v6, v7}, [I
 
-    move-result-object v5
+    move-result-object v6
 
-    aput-object v5, v4, v6
+    const/4 v7, 0x1
 
-    const/4 v5, 0x4
+    aput-object v6, v5, v7
 
-    filled-new-array {v7, v5}, [I
+    const/4 v6, 0x2
 
-    move-result-object v5
+    const/4 v7, 0x2
 
-    const/4 v6, 0x4
+    filled-new-array {v6, v7}, [I
 
-    aput-object v5, v4, v6
+    move-result-object v6
 
-    const/4 v5, 0x5
+    const/4 v7, 0x2
 
-    filled-new-array {v7, v5}, [I
+    aput-object v6, v5, v7
 
-    move-result-object v5
+    const/4 v6, 0x2
 
-    const/4 v6, 0x5
+    const/4 v7, 0x3
 
-    aput-object v5, v4, v6
+    filled-new-array {v6, v7}, [I
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mSARActionTable:[[I
+    move-result-object v6
 
-    iput-boolean v8, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isPtcrb:Z
+    const/4 v7, 0x3
 
-    new-instance v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$3;
+    aput-object v6, v5, v7
 
-    new-instance v5, Landroid/os/Handler;
+    const/4 v6, 0x2
 
-    invoke-direct {v5}, Landroid/os/Handler;-><init>()V
+    const/4 v7, 0x4
 
-    invoke-direct {v4, p0, v5}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$3;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Landroid/os/Handler;)V
+    filled-new-array {v6, v7}, [I
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mObserver:Landroid/database/ContentObserver;
+    move-result-object v6
 
-    new-instance v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$4;
+    const/4 v7, 0x4
 
-    new-instance v5, Landroid/os/Handler;
+    aput-object v6, v5, v7
 
-    invoke-direct {v5}, Landroid/os/Handler;-><init>()V
+    const/4 v6, 0x2
 
-    invoke-direct {v4, p0, v5}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$4;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Landroid/os/Handler;)V
+    const/4 v7, 0x5
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mObserverPsensor:Landroid/database/ContentObserver;
+    filled-new-array {v6, v7}, [I
 
-    new-instance v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$5;
+    move-result-object v6
 
-    invoke-direct {v4, p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$5;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
+    const/4 v7, 0x5
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mIntentReceiver:Landroid/content/BroadcastReceiver;
+    aput-object v6, v5, v7
 
-    iput-object v9, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCm:Landroid/net/ConnectivityManager;
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mSARActionTable:[[I
 
-    iput-boolean v8, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isWifiHotOpen:Z
+    const/4 v5, 0x0
 
-    iput-boolean v8, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isWifiHotOpenOld:Z
+    iput-boolean v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isPtcrb:Z
 
-    iput-boolean v8, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mPSensorNegative:Z
+    new-instance v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$3;
 
-    iput v8, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->action:I
+    new-instance v6, Landroid/os/Handler;
 
-    iput v8, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->oldAction:I
+    invoke-direct {v6}, Landroid/os/Handler;-><init>()V
 
-    new-instance v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$6;
+    invoke-direct {v5, p0, v6}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$3;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Landroid/os/Handler;)V
 
-    invoke-direct {v4, p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$6;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mObserver:Landroid/database/ContentObserver;
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQcRilHookCallback:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
+    new-instance v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$4;
+
+    new-instance v6, Landroid/os/Handler;
+
+    invoke-direct {v6}, Landroid/os/Handler;-><init>()V
+
+    invoke-direct {v5, p0, v6}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$4;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Landroid/os/Handler;)V
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mObserverPsensor:Landroid/database/ContentObserver;
+
+    new-instance v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$5;
+
+    invoke-direct {v5, p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$5;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mIntentReceiver:Landroid/content/BroadcastReceiver;
+
+    const/4 v5, 0x0
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCm:Landroid/net/ConnectivityManager;
+
+    const/4 v5, 0x0
+
+    iput-boolean v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isWifiHotOpen:Z
+
+    const/4 v5, 0x0
+
+    iput-boolean v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isWifiHotOpenOld:Z
+
+    const/4 v5, 0x0
+
+    iput-boolean v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mPSensorNegative:Z
+
+    const/4 v5, 0x0
+
+    iput v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->action:I
+
+    const/4 v5, 0x0
+
+    iput v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->oldAction:I
+
+    new-instance v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$6;
+
+    invoke-direct {v5, p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$6;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQcRilHookCallback:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
 
     iput-object p1, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
 
@@ -680,266 +764,289 @@
 
     sput-object p2, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQtiRadioCapabilityController:Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;
 
-    new-instance v3, Landroid/os/HandlerThread;
+    new-instance v4, Landroid/os/HandlerThread;
 
-    const-string/jumbo v4, "DdsCardSelectionController"
+    const-string/jumbo v5, "DdsCardSelectionController"
 
-    invoke-direct {v3, v4}, Landroid/os/HandlerThread;-><init>(Ljava/lang/String;)V
+    invoke-direct {v4, v5}, Landroid/os/HandlerThread;-><init>(Ljava/lang/String;)V
 
-    invoke-virtual {v3}, Ljava/lang/Thread;->start()V
+    invoke-virtual {v4}, Landroid/os/HandlerThread;->start()V
 
-    new-instance v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;
+    new-instance v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;
 
-    invoke-virtual {v3}, Landroid/os/HandlerThread;->getLooper()Landroid/os/Looper;
+    invoke-virtual {v4}, Landroid/os/HandlerThread;->getLooper()Landroid/os/Looper;
 
-    move-result-object v5
+    move-result-object v6
 
-    invoke-direct {v4, p0, v5}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Landroid/os/Looper;)V
+    invoke-direct {v5, p0, v6}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;-><init>(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Landroid/os/Looper;)V
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
 
     invoke-static {p1}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->getInstance(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
-    move-result-object v4
+    move-result-object v5
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQtiRilInterface:Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
     invoke-static {p1}, Landroid/telecom/TelecomManager;->from(Landroid/content/Context;)Landroid/telecom/TelecomManager;
 
-    move-result-object v4
+    move-result-object v5
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mTelecomManager:Landroid/telecom/TelecomManager;
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mTelecomManager:Landroid/telecom/TelecomManager;
 
-    const-string/jumbo v4, "persist.radio.cmcc"
+    const-string/jumbo v5, "persist.radio.cmcc"
 
-    const-string/jumbo v5, "true"
+    const-string/jumbo v6, "true"
 
-    invoke-static {v4, v5}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v5, v6}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v4
+    move-result-object v5
 
-    const-string/jumbo v5, "true"
+    const-string/jumbo v6, "true"
 
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v4
+    move-result v5
 
-    sput-boolean v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isCMCCVersion:Z
-
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v4}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
-
-    move-result-object v4
-
-    const-string/jumbo v5, "oem.ctaSwitch.support"
-
-    invoke-virtual {v4, v5}, Landroid/content/pm/PackageManager;->hasSystemFeature(Ljava/lang/String;)Z
-
-    move-result v4
-
-    xor-int/lit8 v4, v4, 0x1
-
-    iput-boolean v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isCtaSwitchNotOn:Z
-
-    const-string/jumbo v4, "persist.radio.testmode"
-
-    const-string/jumbo v5, "false"
-
-    invoke-static {v4, v5}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v4
-
-    const-string/jumbo v5, "true"
-
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    sput-boolean v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isTestMode:Z
-
-    const-string/jumbo v4, "persist.radio.sar.enable"
-
-    const-string/jumbo v5, "true"
-
-    invoke-static {v4, v5}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v4
-
-    const-string/jumbo v5, "true"
-
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    sput-boolean v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isSAREanble:Z
-
-    const-string/jumbo v4, "persist.radio.efssync"
-
-    const-string/jumbo v5, "false"
-
-    invoke-static {v4, v5}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v4
-
-    const-string/jumbo v5, "true"
-
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    sput-boolean v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isEfsSyncFlageEnable:Z
-
-    sput-boolean v8, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isFranceSAROpen:Z
-
-    const-string/jumbo v4, "power"
-
-    invoke-virtual {p1, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Landroid/os/PowerManager;
-
-    const-string/jumbo v4, "DdsCardSelectionController"
-
-    invoke-virtual {v2, v10, v4}, Landroid/os/PowerManager;->newWakeLock(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;
-
-    move-result-object v4
-
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWakeLock:Landroid/os/PowerManager$WakeLock;
-
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWakeLock:Landroid/os/PowerManager$WakeLock;
-
-    invoke-virtual {v4, v8}, Landroid/os/PowerManager$WakeLock;->setReferenceCounted(Z)V
-
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
-
-    const-string/jumbo v5, "audio"
-
-    invoke-virtual {v4, v5}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v4
-
-    check-cast v4, Landroid/media/AudioManager;
-
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mAudioManager:Landroid/media/AudioManager;
-
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
-
-    const-string/jumbo v5, "wifi"
-
-    invoke-virtual {v4, v5}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v4
-
-    check-cast v4, Landroid/net/wifi/WifiManager;
-
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWifiManager:Landroid/net/wifi/WifiManager;
-
-    new-instance v4, Lcom/qualcomm/qcrilhook/QcRilHook;
+    sput-boolean v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isCMCCVersion:Z
 
     iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
 
-    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQcRilHookCallback:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
+    invoke-virtual {v5}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
-    invoke-direct {v4, v5, v6}, Lcom/qualcomm/qcrilhook/QcRilHook;-><init>(Landroid/content/Context;Lcom/qualcomm/qcrilhook/QcRilHookCallback;)V
+    move-result-object v5
 
-    iput-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
+    const-string/jumbo v6, "oem.ctaSwitch.support"
 
-    const/4 v1, 0x0
+    invoke-virtual {v5, v6}, Landroid/content/pm/PackageManager;->hasSystemFeature(Ljava/lang/String;)Z
+
+    move-result v5
+
+    xor-int/lit8 v5, v5, 0x1
+
+    iput-boolean v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isCtaSwitchNotOn:Z
+
+    const-string/jumbo v5, "persist.radio.testmode"
+
+    const-string/jumbo v6, "false"
+
+    invoke-static {v5, v6}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v5
+
+    const-string/jumbo v6, "true"
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    sput-boolean v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isTestMode:Z
+
+    const-string/jumbo v5, "persist.radio.sar.enable"
+
+    const-string/jumbo v6, "true"
+
+    invoke-static {v5, v6}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v5
+
+    const-string/jumbo v6, "true"
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    sput-boolean v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isSAREanble:Z
+
+    const-string/jumbo v5, "persist.radio.efssync"
+
+    const-string/jumbo v6, "false"
+
+    invoke-static {v5, v6}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v5
+
+    const-string/jumbo v6, "true"
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    sput-boolean v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isEfsSyncFlageEnable:Z
+
+    const/4 v5, 0x0
+
+    sput-boolean v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isFranceSAROpen:Z
+
+    const-string/jumbo v5, "power"
+
+    invoke-virtual {p1, v5}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Landroid/os/PowerManager;
+
+    const-string/jumbo v5, "DdsCardSelectionController"
+
+    const/4 v6, 0x1
+
+    invoke-virtual {v3, v6, v5}, Landroid/os/PowerManager;->newWakeLock(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;
+
+    move-result-object v5
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWakeLock:Landroid/os/PowerManager$WakeLock;
+
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWakeLock:Landroid/os/PowerManager$WakeLock;
+
+    const/4 v6, 0x0
+
+    invoke-virtual {v5, v6}, Landroid/os/PowerManager$WakeLock;->setReferenceCounted(Z)V
+
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
+
+    const-string/jumbo v6, "audio"
+
+    invoke-virtual {v5, v6}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v5
+
+    check-cast v5, Landroid/media/AudioManager;
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mAudioManager:Landroid/media/AudioManager;
+
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
+
+    const-string/jumbo v6, "wifi"
+
+    invoke-virtual {v5, v6}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v5
+
+    check-cast v5, Landroid/net/wifi/WifiManager;
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mWifiManager:Landroid/net/wifi/WifiManager;
+
+    new-instance v5, Lcom/qualcomm/qcrilhook/QcRilHook;
+
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
+
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQcRilHookCallback:Lcom/qualcomm/qcrilhook/QcRilHookCallback;
+
+    invoke-direct {v5, v6, v7}, Lcom/qualcomm/qcrilhook/QcRilHook;-><init>(Landroid/content/Context;Lcom/qualcomm/qcrilhook/QcRilHookCallback;)V
+
+    iput-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mQcRilHook:Lcom/qualcomm/qcrilhook/QcRilHook;
+
+    const/4 v2, 0x0
 
     :goto_0
-    sget v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mNumPhones:I
+    sget v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mNumPhones:I
 
-    if-ge v1, v4, :cond_0
+    if-ge v2, v5, :cond_0
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
 
-    new-instance v5, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
+    new-instance v6, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
 
-    const/4 v6, -0x1
+    const/4 v7, -0x1
 
-    invoke-direct {v5, v6, v9}, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;-><init>(ILjava/lang/String;)V
+    const/4 v8, 0x0
 
-    aput-object v5, v4, v1
+    invoke-direct {v6, v7, v8}, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;-><init>(ILjava/lang/String;)V
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
+    aput-object v6, v5, v2
 
-    aget-object v4, v4, v1
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
 
-    iput-boolean v8, v4, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;->isCardReady:Z
+    aget-object v5, v5, v2
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
+    const/4 v6, 0x0
 
-    aget-object v4, v4, v1
+    iput-boolean v6, v5, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;->isCardReady:Z
 
-    iput-boolean v8, v4, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;->isPinLocked:Z
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
+    aget-object v5, v5, v2
 
-    aget-object v4, v4, v1
+    const/4 v6, 0x0
 
-    iput-boolean v8, v4, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;->isCDMACard:Z
+    iput-boolean v6, v5, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;->isPinLocked:Z
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mRadioCapability:[Lcom/android/internal/telephony/RadioCapability;
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCurrentCardStatus:[Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;
 
-    aput-object v9, v4, v1
+    aget-object v5, v5, v2
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
+    const/4 v6, 0x0
 
-    aget-object v4, v4, v1
+    iput-boolean v6, v5, Lcom/qualcomm/qti/internal/telephony/CurrentCardStatus;->isCDMACard:Z
 
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mRadioCapability:[Lcom/android/internal/telephony/RadioCapability;
 
-    new-instance v6, Ljava/lang/Integer;
+    const/4 v6, 0x0
 
-    invoke-direct {v6, v1}, Ljava/lang/Integer;-><init>(I)V
+    aput-object v6, v5, v2
 
-    const/16 v7, 0xc
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
 
-    invoke-interface {v4, v5, v7, v6}, Lcom/android/internal/telephony/CommandsInterface;->registerForAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
+    aget-object v5, v5, v2
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
 
-    aget-object v4, v4, v1
+    new-instance v7, Ljava/lang/Integer;
 
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
+    invoke-direct {v7, v2}, Ljava/lang/Integer;-><init>(I)V
 
-    new-instance v6, Ljava/lang/Integer;
+    const/16 v8, 0xc
 
-    invoke-direct {v6, v1}, Ljava/lang/Integer;-><init>(I)V
+    invoke-interface {v5, v6, v8, v7}, Lcom/android/internal/telephony/CommandsInterface;->registerForAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    const/16 v7, 0xd
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mCi:[Lcom/android/internal/telephony/CommandsInterface;
 
-    invoke-interface {v4, v5, v7, v6}, Lcom/android/internal/telephony/CommandsInterface;->registerForNotAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
+    aget-object v5, v5, v2
 
-    sget-object v4, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->sProxyPhones:[Lcom/android/internal/telephony/Phone;
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
 
-    aget-object v4, v4, v1
+    new-instance v7, Ljava/lang/Integer;
 
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
+    invoke-direct {v7, v2}, Ljava/lang/Integer;-><init>(I)V
 
-    const/16 v6, 0x1a
+    const/16 v8, 0xd
 
-    invoke-virtual {v4, v5, v6, v9}, Lcom/android/internal/telephony/Phone;->registerForPhoneObjectSwitch(Landroid/os/Handler;ILjava/lang/Object;)V
+    invoke-interface {v5, v6, v8, v7}, Lcom/android/internal/telephony/CommandsInterface;->registerForNotAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
+    sget-object v5, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->sProxyPhones:[Lcom/android/internal/telephony/Phone;
 
-    invoke-virtual {v4}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+    aget-object v5, v5, v2
 
-    move-result-object v4
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
 
+    const/16 v7, 0x1a
+
+    const/4 v8, 0x0
+
+    invoke-virtual {v5, v6, v7, v8}, Lcom/android/internal/telephony/Phone;->registerForPhoneObjectSwitch(Landroid/os/Handler;ILjava/lang/Object;)V
+
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_0
+
+    :cond_0
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v6, "softsim_iccid"
+    const-string/jumbo v6, "isOPSoftSimEnable = "
 
     invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v5
 
-    invoke-virtual {v5, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
+
+    invoke-direct {p0, v6}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isOPSoftSimEnable(Landroid/content/Context;)Z
+
+    move-result v6
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
     move-result-object v5
 
@@ -947,56 +1054,97 @@
 
     move-result-object v5
 
-    invoke-static {v5}, Landroid/provider/Settings$Global;->getUriFor(Ljava/lang/String;)Landroid/net/Uri;
+    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
+
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
+
+    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isOPSoftSimEnable(Landroid/content/Context;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_1
+
+    :try_start_0
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v5}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v5
 
-    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mObserver:Landroid/database/ContentObserver;
+    sget-object v6, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->SOFT_SIM:Landroid/net/Uri;
 
-    invoke-virtual {v4, v5, v8, v6}, Landroid/content/ContentResolver;->registerContentObserver(Landroid/net/Uri;ZLandroid/database/ContentObserver;)V
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mObserver:Landroid/database/ContentObserver;
 
-    add-int/lit8 v1, v1, 0x1
+    const/4 v8, 0x0
 
-    goto :goto_0
+    invoke-virtual {v5, v6, v8, v7}, Landroid/content/ContentResolver;->registerContentObserver(Landroid/net/Uri;ZLandroid/database/ContentObserver;)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    :cond_0
+    :cond_1
+    :goto_1
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->registerPsensor()V
 
-    new-instance v0, Landroid/content/IntentFilter;
+    new-instance v1, Landroid/content/IntentFilter;
 
-    invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
+    invoke-direct {v1}, Landroid/content/IntentFilter;-><init>()V
 
-    const-string/jumbo v4, "android.intent.action.SCREEN_ON"
+    const-string/jumbo v5, "android.intent.action.SCREEN_ON"
 
-    invoke-virtual {v0, v4}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+    invoke-virtual {v1, v5}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    const-string/jumbo v4, "android.intent.action.SCREEN_OFF"
+    const-string/jumbo v5, "android.intent.action.SCREEN_OFF"
 
-    invoke-virtual {v0, v4}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+    invoke-virtual {v1, v5}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    const-string/jumbo v4, "android.net.conn.TETHER_STATE_CHANGED"
+    const-string/jumbo v5, "android.net.conn.TETHER_STATE_CHANGED"
 
-    invoke-virtual {v0, v4}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+    invoke-virtual {v1, v5}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    const-string/jumbo v4, "qualcomm.intent.action.ACTION_MCFG_MBN_DONE"
+    const-string/jumbo v5, "qualcomm.intent.action.ACTION_MCFG_MBN_DONE"
 
-    invoke-virtual {v0, v4}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+    invoke-virtual {v1, v5}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    const-string/jumbo v4, "android.intent.action.SIM_STATE_CHANGED"
+    const-string/jumbo v5, "android.intent.action.SIM_STATE_CHANGED"
 
-    invoke-virtual {v0, v4}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+    invoke-virtual {v1, v5}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
+    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mContext:Landroid/content/Context;
 
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mIntentReceiver:Landroid/content/BroadcastReceiver;
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mIntentReceiver:Landroid/content/BroadcastReceiver;
 
-    invoke-virtual {v4, v5, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+    invoke-virtual {v5, v6, v1}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
 
-    const-string/jumbo v4, "Constructor - Exit"
+    const-string/jumbo v5, "Constructor - Exit"
 
-    invoke-direct {p0, v4}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
+    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
 
     return-void
+
+    :catch_0
+    move-exception v0
+
+    new-instance v5, Ljava/lang/StringBuilder;
+
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string/jumbo v6, "e = "
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    invoke-virtual {v5, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-direct {p0, v5}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
+
+    goto :goto_1
 .end method
 
 .method private acquireWakeLockWithTimeOut(J)V
@@ -1507,7 +1655,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0, p1}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v3
 
@@ -1519,7 +1667,7 @@
 
     aget v4, v3, v7
 
-    invoke-virtual {v0, v4}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    invoke-virtual {v0, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v4
 
@@ -2125,124 +2273,65 @@
 .end method
 
 .method private handleTimeOut()V
-    .locals 6
-
-    const/4 v5, 0x0
+    .locals 4
 
     invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->getPrevPrimaryPhoneId()I
 
-    move-result v1
+    move-result v0
 
-    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
+    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->oemSetDefaultDataSubId(I)V
 
-    move-result-object v3
+    const-string/jumbo v1, "true"
 
-    invoke-virtual {v3, v1}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    const-string/jumbo v2, "persist.radio.ptcrb.enable"
+
+    const-string/jumbo v3, "false"
+
+    invoke-static {v2, v3}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v2
 
-    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result-object v3
+    move-result v1
 
-    aget v4, v2, v5
+    iput-boolean v1, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isPtcrb:Z
 
-    invoke-virtual {v3, v4}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    iget-boolean v1, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isPtcrb:Z
 
-    move-result v0
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string/jumbo v4, "handleTimeOut isSubActive: "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    const-string/jumbo v4, "  phoneId "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
-
-    if-eqz v0, :cond_0
-
-    invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
-
-    move-result-object v3
-
-    aget v4, v2, v5
-
-    invoke-virtual {v3, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->setDefaultDataSubId(I)V
-
-    :cond_0
-    const-string/jumbo v3, "true"
-
-    const-string/jumbo v4, "persist.radio.ptcrb.enable"
-
-    const-string/jumbo v5, "false"
-
-    invoke-static {v4, v5}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    iput-boolean v3, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isPtcrb:Z
-
-    iget-boolean v3, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isPtcrb:Z
-
-    if-nez v3, :cond_3
+    if-nez v1, :cond_2
 
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->hasCdmaCardInsert()Z
 
-    move-result v3
+    move-result v1
 
-    if-eqz v3, :cond_2
+    if-eqz v1, :cond_1
 
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->checkAnyCardIsLocked()Z
 
-    move-result v3
+    move-result v1
 
-    if-nez v3, :cond_1
+    if-nez v1, :cond_0
 
-    const-string/jumbo v3, "No SIM is Locked, and all SIM is READY"
+    const-string/jumbo v1, "No SIM is Locked, and all SIM is READY"
 
-    invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
 
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->setPreferredCdmaNetworkType()V
 
-    :cond_1
+    :cond_0
     :goto_0
     return-void
 
-    :cond_2
+    :cond_1
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->setPreferredGWNetworkType()V
 
     goto :goto_0
 
-    :cond_3
-    const-string/jumbo v3, "PTCRB prop is on, we won\'t set rat to modem after sim state change"
+    :cond_2
+    const-string/jumbo v1, "PTCRB prop is on, we won\'t set rat to modem after sim state change"
 
-    invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
+    invoke-direct {p0, v1}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
 
     goto :goto_0
 .end method
@@ -2532,6 +2621,46 @@
     if-ne v1, p1, :cond_1
 
     goto :goto_0
+.end method
+
+.method private isOPSoftSimEnable(Landroid/content/Context;)Z
+    .locals 6
+
+    const/4 v5, 0x0
+
+    :try_start_0
+    invoke-virtual {p1}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v2
+
+    const-string/jumbo v3, "com.redteamobile.virtual.softsim"
+
+    const/4 v4, 0x0
+
+    invoke-virtual {v2, v3, v4}, Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
+    :try_end_0
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    move-result-object v1
+
+    :goto_0
+    if-nez v1, :cond_0
+
+    return v5
+
+    :catch_0
+    move-exception v0
+
+    const/4 v1, 0x0
+
+    invoke-virtual {v0}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v2, 0x1
+
+    return v2
 .end method
 
 .method private isOnlyOneCardInsert()Z
@@ -2947,7 +3076,7 @@
 
     move-result-object v5
 
-    invoke-virtual {v5}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultDataSubId()I
+    invoke-virtual {v5}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultDataSubId()I
 
     move-result v0
 
@@ -3007,7 +3136,7 @@
 
     move-result-object v5
 
-    invoke-virtual {v5, v3}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v5, v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v4
 
@@ -3023,7 +3152,7 @@
 
     aget v6, v4, v7
 
-    invoke-virtual {v5, v6}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    invoke-virtual {v5, v6}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v5
 
@@ -3059,7 +3188,7 @@
 
     move-result-object v2
 
-    invoke-virtual {v2, p1}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v2, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v1
 
@@ -3069,7 +3198,7 @@
 
     aget v3, v1, v4
 
-    invoke-virtual {v2, v3}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    invoke-virtual {v2, v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v0
 
@@ -3104,6 +3233,12 @@
     invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
 
     if-eqz v0, :cond_0
+
+    iget-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->softSimEnable:Z
+
+    xor-int/lit8 v2, v2, 0x1
+
+    if-eqz v2, :cond_0
 
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;
 
@@ -3584,7 +3719,7 @@
 .end method
 
 .method private processSoftSimIccidChange()V
-    .locals 8
+    .locals 5
 
     const/4 v2, 0x0
 
@@ -3608,17 +3743,21 @@
     const/4 v2, 0x1
 
     :cond_0
+    iput-boolean v2, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->softSimEnable:Z
+
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v4, "is_softsim insert "
+    const-string/jumbo v4, "softSimEnable status  "
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v3
 
-    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    iget-boolean v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->softSimEnable:Z
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
     move-result-object v3
 
@@ -3628,31 +3767,12 @@
 
     invoke-direct {p0, v3}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
 
-    if-eqz v2, :cond_2
-
     return-void
 
     :cond_1
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
-
-    :cond_2
-    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
-
-    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->mHandler:Landroid/os/Handler;
-
-    const/16 v5, 0x1c
-
-    invoke-virtual {v4, v5}, Landroid/os/Handler;->obtainMessage(I)Landroid/os/Message;
-
-    move-result-object v4
-
-    const-wide/16 v6, 0xfa0
-
-    invoke-virtual {v3, v4, v6, v7}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
-
-    return-void
 .end method
 
 .method private processTMOCardAsdds()V
@@ -3668,7 +3788,7 @@
 
     move-result-object v7
 
-    invoke-virtual {v7, v0}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v7, v0}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v5
 
@@ -3678,7 +3798,7 @@
 
     aget v8, v5, v9
 
-    invoke-virtual {v7, v8}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    invoke-virtual {v7, v8}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v2
 
@@ -3814,7 +3934,7 @@
 
     move-result-object v2
 
-    invoke-virtual {v2, p1}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v2, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v1
 
@@ -3824,7 +3944,7 @@
 
     aget v3, v1, v5
 
-    invoke-virtual {v2, v3}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    invoke-virtual {v2, v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v0
 
@@ -4413,7 +4533,7 @@
     :catch_0
     move-exception v0
 
-    invoke-virtual {v0}, Ljava/lang/Throwable;->printStackTrace()V
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_0
 .end method
@@ -4505,7 +4625,7 @@
 
     move-result-object v5
 
-    invoke-virtual {v5, v3}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v5, v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v4
 
@@ -4554,7 +4674,7 @@
 
     move-result-object v5
 
-    invoke-virtual {v5, v3}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v5, v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v4
 
@@ -4607,103 +4727,154 @@
 .end method
 
 .method public getVirtualIccid(ILandroid/content/Context;)Ljava/lang/String;
-    .locals 5
+    .locals 10
 
-    const/4 v1, 0x0
-
-    if-eqz p2, :cond_0
+    const/4 v8, 0x0
 
     :try_start_0
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string/jumbo v1, "slot=\""
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string/jumbo v1, "\""
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {v9, v0}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
     invoke-virtual {p2}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
-    move-result-object v2
+    move-result-object v0
 
-    new-instance v3, Ljava/lang/StringBuilder;
+    sget-object v1, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->SOFTSIM_URL:Landroid/net/Uri;
 
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+    const/4 v2, 0x6
 
-    const-string/jumbo v4, "softsim_iccid"
+    new-array v2, v2, [Ljava/lang/String;
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string/jumbo v3, "slot"
+
+    const/4 v4, 0x0
+
+    aput-object v3, v2, v4
+
+    const-string/jumbo v3, "iccid"
+
+    const/4 v4, 0x1
+
+    aput-object v3, v2, v4
+
+    const-string/jumbo v3, "imsi"
+
+    const/4 v4, 0x2
+
+    aput-object v3, v2, v4
+
+    const-string/jumbo v3, "permit_package"
+
+    const/4 v4, 0x3
+
+    aput-object v3, v2, v4
+
+    const-string/jumbo v3, "forbid_package"
+
+    const/4 v4, 0x4
+
+    aput-object v3, v2, v4
+
+    const-string/jumbo v3, "pilot"
+
+    const/4 v4, 0x5
+
+    aput-object v3, v2, v4
+
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v3
 
-    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string/jumbo v5, "slot"
 
-    move-result-object v3
+    const/4 v4, 0x0
 
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual/range {v0 .. v5}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
 
-    move-result-object v3
+    move-result-object v6
 
-    invoke-static {v2, v3}, Landroid/provider/Settings$Global;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    if-eqz v6, :cond_0
 
-    move-result-object v1
+    invoke-interface {v6}, Landroid/database/Cursor;->moveToFirst()Z
 
-    :cond_0
     :goto_0
-    new-instance v2, Ljava/lang/StringBuilder;
+    invoke-interface {v6}, Landroid/database/Cursor;->isAfterLast()Z
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    move-result v0
 
-    const-string/jumbo v3, "softsim_iccid = "
+    if-nez v0, :cond_1
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const/4 v0, 0x1
 
-    move-result-object v2
+    invoke-interface {v6, v0}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
 
-    invoke-static {v1}, Landroid/telephony/SubscriptionInfo;->givePrintableIccid(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v8
 
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    const-string/jumbo v3, "  slot=  "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logd(Ljava/lang/String;)V
-
-    return-object v1
-
-    :catch_0
-    move-exception v0
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string/jumbo v3, "exc: "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-direct {p0, v2}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->loge(Ljava/lang/String;)V
+    invoke-interface {v6}, Landroid/database/Cursor;->moveToNext()Z
+    :try_end_0
+    .catch Landroid/database/sqlite/SQLiteException; {:try_start_0 .. :try_end_0} :catch_0
 
     goto :goto_0
+
+    :catch_0
+    move-exception v7
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string/jumbo v1, "getVirtualIccid SQLiteException "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->logi(Ljava/lang/String;)V
+
+    :cond_0
+    :goto_1
+    return-object v8
+
+    :cond_1
+    :try_start_1
+    invoke-interface {v6}, Landroid/database/Cursor;->close()V
+    :try_end_1
+    .catch Landroid/database/sqlite/SQLiteException; {:try_start_1 .. :try_end_1} :catch_0
+
+    goto :goto_1
 .end method
 
 .method handleEX(Landroid/os/AsyncResult;I)V
@@ -4989,7 +5160,7 @@
 
     move-result-object v3
 
-    invoke-virtual {v3, p1}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v3, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v2
 
@@ -5024,7 +5195,7 @@
 
     aget v4, v2, v5
 
-    invoke-virtual {v3, v4}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    invoke-virtual {v3, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v0
 
@@ -5094,7 +5265,7 @@
 
     aget v4, v2, v5
 
-    invoke-virtual {v3, v4}, Lcom/android/internal/telephony/SubscriptionController;->setDefaultVoiceSubId(I)V
+    invoke-virtual {v3, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->setDefaultVoiceSubId(I)V
 
     aget v3, v2, v5
 

@@ -189,7 +189,7 @@
 
     check-cast v2, [Ljava/lang/String;
 
-    iput-object v2, p0, Lcom/android/internal/telephony/dataconnection/ApnSetting;->types:[Ljava/lang/String;
+    iput-object v2, p0, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnProfileOmh;->types:[Ljava/lang/String;
 
     return-void
 .end method
@@ -246,7 +246,7 @@
 .method public getProfileId()I
     .locals 1
 
-    iget v0, p0, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnSetting;->profileId:I
+    iget v0, p0, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnProfileOmh;->profileId:I
 
     return v0
 .end method
@@ -354,7 +354,7 @@
 
     move-result-object v1
 
-    iget v2, p0, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnSetting;->profileId:I
+    iget v2, p0, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnProfileOmh;->profileId:I
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 

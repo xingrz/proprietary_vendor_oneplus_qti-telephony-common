@@ -832,7 +832,7 @@
 
     const/4 v8, 0x1
 
-    invoke-virtual {p0, v8, v7, v4, v1}, Landroid/os/Handler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
+    invoke-virtual {p0, v8, v7, v4, v1}, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiCdmaApnProfileTracker;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v0
 
@@ -898,11 +898,11 @@
 
     const/4 v0, 0x0
 
-    invoke-virtual {p0, v0}, Landroid/os/Handler;->obtainMessage(I)Landroid/os/Message;
+    invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiCdmaApnProfileTracker;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v0
 
-    invoke-virtual {p0, v0}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+    invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiCdmaApnProfileTracker;->sendMessage(Landroid/os/Message;)Z
 
     return-void
 .end method
@@ -975,7 +975,7 @@
 
     check-cast v0, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnSetting;
 
-    invoke-virtual {v0, p1}, Lcom/android/internal/telephony/dataconnection/ApnSetting;->canHandleType(Ljava/lang/String;)Z
+    invoke-virtual {v0, p1}, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnSetting;->canHandleType(Ljava/lang/String;)Z
 
     move-result v3
 
@@ -1094,7 +1094,7 @@
 
     iget-object v0, p0, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiCdmaApnProfileTracker;->mActiveApn:Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnSetting;
 
-    invoke-virtual {v0, p1}, Lcom/android/internal/telephony/dataconnection/ApnSetting;->canHandleType(Ljava/lang/String;)Z
+    invoke-virtual {v0, p1}, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnSetting;->canHandleType(Ljava/lang/String;)Z
 
     move-result v0
 

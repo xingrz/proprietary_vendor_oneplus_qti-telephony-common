@@ -617,7 +617,7 @@
         }
     .end annotation
 
-    invoke-virtual {p0, p1}, Landroid/os/HwBinder;->registerService(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Lvendor/qti/hardware/radio/qtiradio/V1_0/IQtiRadio$Stub;->registerService(Ljava/lang/String;)V
 
     return-void
 .end method

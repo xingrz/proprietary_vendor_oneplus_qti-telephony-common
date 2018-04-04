@@ -49,7 +49,7 @@
 .method public toHash()Ljava/lang/String;
     .locals 1
 
-    invoke-virtual {p0}, Lcom/android/internal/telephony/dataconnection/ApnSetting;->toString()Ljava/lang/String;
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/dataconnection/QtiApnSetting;->toString()Ljava/lang/String;
 
     move-result-object v0
 

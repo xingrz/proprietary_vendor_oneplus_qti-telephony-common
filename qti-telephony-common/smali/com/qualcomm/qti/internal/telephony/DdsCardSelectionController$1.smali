@@ -31,19 +31,19 @@
 
     const-string/jumbo v0, "898600"
 
-    invoke-virtual {p0, v0}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$1;->add(Ljava/lang/Object;)Z
 
     const-string/jumbo v0, "898602"
 
-    invoke-virtual {p0, v0}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$1;->add(Ljava/lang/Object;)Z
 
     const-string/jumbo v0, "898606"
 
-    invoke-virtual {p0, v0}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$1;->add(Ljava/lang/Object;)Z
 
     const-string/jumbo v0, "898607"
 
-    invoke-virtual {p0, v0}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$1;->add(Ljava/lang/Object;)Z
 
     return-void
 .end method

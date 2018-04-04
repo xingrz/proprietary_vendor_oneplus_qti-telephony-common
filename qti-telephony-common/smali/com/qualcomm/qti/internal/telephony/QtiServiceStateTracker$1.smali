@@ -56,7 +56,7 @@
 
     const-string/jumbo v2, "rac"
 
-    invoke-virtual {v0, v2}, Landroid/os/BaseBundle;->getInt(Ljava/lang/String;)I
+    invoke-virtual {v0, v2}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
 
     move-result v2
 
@@ -66,7 +66,7 @@
 
     const-string/jumbo v2, "rat"
 
-    invoke-virtual {v0, v2}, Landroid/os/BaseBundle;->getInt(Ljava/lang/String;)I
+    invoke-virtual {v0, v2}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
 
     move-result v2
 

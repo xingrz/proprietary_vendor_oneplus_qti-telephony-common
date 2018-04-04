@@ -840,7 +840,7 @@
 
     rsub-int/lit8 v4, p1, 0x1
 
-    invoke-virtual {v3, v4}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v3, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v2
 
@@ -850,7 +850,7 @@
 
     aget v4, v2, v5
 
-    invoke-virtual {v3, v4}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    invoke-virtual {v3, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v0
 
@@ -870,7 +870,7 @@
 
     aget v4, v2, v5
 
-    invoke-virtual {v3, v4}, Lcom/android/internal/telephony/SubscriptionController;->setDefaultVoiceSubId(I)V
+    invoke-virtual {v3, v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->setDefaultVoiceSubId(I)V
 
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
 
@@ -1241,7 +1241,7 @@
 
     move-result-object v2
 
-    invoke-virtual {v2}, Ljava/lang/Enum;->ordinal()I
+    invoke-virtual {v2}, Lcom/android/internal/telephony/uicc/IccCardApplicationStatus$AppState;->ordinal()I
 
     move-result v0
 
@@ -1272,7 +1272,7 @@
 
     move-result-object v2
 
-    invoke-virtual {v2}, Ljava/lang/Enum;->ordinal()I
+    invoke-virtual {v2}, Lcom/android/internal/telephony/uicc/IccCardApplicationStatus$AppType;->ordinal()I
 
     move-result v0
 

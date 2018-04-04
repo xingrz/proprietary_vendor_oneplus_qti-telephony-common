@@ -82,6 +82,12 @@
 
 .field public static final enum AP_2_MODEM_UPDATE_EFS_SYNC_FLAG:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
 
+.field public static final enum TMO_AUDIO_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+.field public static final enum TMO_CAPABILITY_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+.field public static final enum TMO_LOG_PACKAGE_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
 
 # instance fields
 .field private value:I
@@ -407,9 +413,45 @@
 
     new-instance v0, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
 
-    const-string/jumbo v1, "AP_2_MODEM_MAX_CMD"
+    const-string/jumbo v1, "TMO_AUDIO_OPERATE"
 
     const/16 v2, 0x1b
+
+    const/16 v3, 0x1c
+
+    invoke-direct {v0, v1, v2, v3}, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;-><init>(Ljava/lang/String;II)V
+
+    sput-object v0, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->TMO_AUDIO_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    new-instance v0, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    const-string/jumbo v1, "TMO_CAPABILITY_OPERATE"
+
+    const/16 v2, 0x1c
+
+    const/16 v3, 0x1d
+
+    invoke-direct {v0, v1, v2, v3}, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;-><init>(Ljava/lang/String;II)V
+
+    sput-object v0, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->TMO_CAPABILITY_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    new-instance v0, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    const-string/jumbo v1, "TMO_LOG_PACKAGE_OPERATE"
+
+    const/16 v2, 0x1d
+
+    const/16 v3, 0x1e
+
+    invoke-direct {v0, v1, v2, v3}, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;-><init>(Ljava/lang/String;II)V
+
+    sput-object v0, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->TMO_LOG_PACKAGE_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    new-instance v0, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    const-string/jumbo v1, "AP_2_MODEM_MAX_CMD"
+
+    const/16 v2, 0x1e
 
     const v3, 0x7fffffff
 
@@ -417,7 +459,7 @@
 
     sput-object v0, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->AP_2_MODEM_MAX_CMD:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
 
-    const/16 v0, 0x1c
+    const/16 v0, 0x1f
 
     new-array v0, v0, [Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
 
@@ -573,9 +615,27 @@
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->AP_2_MODEM_MAX_CMD:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+    sget-object v1, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->TMO_AUDIO_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
 
     const/16 v2, 0x1b
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->TMO_CAPABILITY_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    const/16 v2, 0x1c
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->TMO_LOG_PACKAGE_OPERATE:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    const/16 v2, 0x1d
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;->AP_2_MODEM_MAX_CMD:Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;
+
+    const/16 v2, 0x1e
 
     aput-object v1, v0, v2
 

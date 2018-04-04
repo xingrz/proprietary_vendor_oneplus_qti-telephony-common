@@ -59,7 +59,7 @@
 
     move-result-object v4
 
-    invoke-virtual {v4}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultVoiceSubId()I
+    invoke-virtual {v4}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v10
 
@@ -760,7 +760,7 @@
     goto :goto_0
 
     :cond_0
-    invoke-virtual {v3}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultVoiceSubId()I
+    invoke-virtual {v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v5
 
@@ -819,7 +819,7 @@
     goto :goto_0
 
     :cond_0
-    invoke-virtual {v3}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultVoiceSubId()I
+    invoke-virtual {v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v5
 
@@ -876,7 +876,7 @@
     goto :goto_0
 
     :cond_0
-    invoke-virtual {v3}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultVoiceSubId()I
+    invoke-virtual {v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v5
 
@@ -933,7 +933,7 @@
     goto :goto_0
 
     :cond_0
-    invoke-virtual {v3}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultVoiceSubId()I
+    invoke-virtual {v3}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultVoiceSubId()I
 
     move-result v5
 

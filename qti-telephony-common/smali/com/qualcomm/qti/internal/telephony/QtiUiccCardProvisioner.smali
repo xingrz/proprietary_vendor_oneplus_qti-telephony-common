@@ -647,7 +647,7 @@
 
     const/4 v7, 0x4
 
-    invoke-virtual {p0, v7, v6}, Landroid/os/Handler;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+    invoke-virtual {p0, v7, v6}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v6
 
@@ -986,7 +986,7 @@
 
     move-result-object v5
 
-    invoke-virtual {v5, p1}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
+    invoke-virtual {v5, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getSubId(I)[I
 
     move-result-object v2
 
@@ -1002,7 +1002,7 @@
 
     aget v6, v2, v4
 
-    invoke-virtual {v5, v6}, Lcom/android/internal/telephony/SubscriptionController;->isActiveSubId(I)Z
+    invoke-virtual {v5, v6}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->isActiveSubId(I)Z
 
     move-result v5
 
@@ -1509,11 +1509,11 @@
 
     const/4 v2, 0x5
 
-    invoke-virtual {p0, v2, p1, v5}, Landroid/os/Handler;->obtainMessage(III)Landroid/os/Message;
+    invoke-virtual {p0, v2, p1, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-virtual {p0, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+    invoke-virtual {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sendMessage(Landroid/os/Message;)Z
 
     goto :goto_1
 
@@ -1693,11 +1693,11 @@
 
     const/4 v2, 0x5
 
-    invoke-virtual {p0, v2, p1, v5}, Landroid/os/Handler;->obtainMessage(III)Landroid/os/Message;
+    invoke-virtual {p0, v2, p1, v5}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v2
 
-    invoke-virtual {p0, v2}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+    invoke-virtual {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiUiccCardProvisioner;->sendMessage(Landroid/os/Message;)Z
 
     goto :goto_1
 

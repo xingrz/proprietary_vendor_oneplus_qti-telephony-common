@@ -61,7 +61,7 @@
 
     iget v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher$2;->val$phoneId:I
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->resendDataAllowed(I)V
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->resendDataAllowed(I)V
 
     :goto_0
     return-void

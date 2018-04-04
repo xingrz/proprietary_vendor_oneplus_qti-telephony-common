@@ -389,7 +389,7 @@
 
     const/4 v0, 0x0
 
-    invoke-virtual {p0}, Lcom/android/internal/telephony/RIL;->resetProxyAndRequestList()V
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->resetProxyAndRequestList()V
 
     iput-object v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->mQtiRadio:Lvendor/qti/hardware/radio/qtiradio/V1_0/IQtiRadio;
 
@@ -415,11 +415,11 @@
 
     invoke-static {v2, v3}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    iget-object v2, p0, Lcom/android/internal/telephony/RIL;->mRILDefaultWorkSource:Landroid/os/WorkSource;
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->mRILDefaultWorkSource:Landroid/os/WorkSource;
 
     const/16 v3, 0xc8
 
-    invoke-virtual {p0, v3, p1, v2}, Lcom/android/internal/telephony/RIL;->obtainRequestSerial(ILandroid/os/Message;Landroid/os/WorkSource;)I
+    invoke-virtual {p0, v3, p1, v2}, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->obtainRequestSerial(ILandroid/os/Message;Landroid/os/WorkSource;)I
 
     move-result v1
 
@@ -467,7 +467,7 @@
 .method qtiGetMessageFromRequest(Ljava/lang/Object;)Landroid/os/Message;
     .locals 1
 
-    invoke-virtual {p0, p1}, Lcom/android/internal/telephony/RIL;->getMessageFromRequest(Ljava/lang/Object;)Landroid/os/Message;
+    invoke-virtual {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->getMessageFromRequest(Ljava/lang/Object;)Landroid/os/Message;
 
     move-result-object v0
 
@@ -477,7 +477,7 @@
 .method qtiProcessResponse(Landroid/hardware/radio/V1_0/RadioResponseInfo;)Ljava/lang/Object;
     .locals 1
 
-    invoke-virtual {p0, p1}, Lcom/android/internal/telephony/RIL;->processResponse(Landroid/hardware/radio/V1_0/RadioResponseInfo;)Lcom/android/internal/telephony/RILRequest;
+    invoke-virtual {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->processResponse(Landroid/hardware/radio/V1_0/RadioResponseInfo;)Lcom/android/internal/telephony/RILRequest;
 
     move-result-object v0
 
@@ -487,7 +487,7 @@
 .method qtiProcessResponseDone(Ljava/lang/Object;Landroid/hardware/radio/V1_0/RadioResponseInfo;Ljava/lang/String;)V
     .locals 0
 
-    invoke-virtual {p0, p1, p2, p3}, Lcom/android/internal/telephony/RIL;->processResponseDone(Ljava/lang/Object;Landroid/hardware/radio/V1_0/RadioResponseInfo;Ljava/lang/Object;)V
+    invoke-virtual {p0, p1, p2, p3}, Lcom/qualcomm/qti/internal/telephony/QtiRIL;->processResponseDone(Ljava/lang/Object;Landroid/hardware/radio/V1_0/RadioResponseInfo;Ljava/lang/Object;)V
 
     return-void
 .end method

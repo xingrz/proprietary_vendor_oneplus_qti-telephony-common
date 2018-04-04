@@ -96,7 +96,7 @@
 .method static synthetic -wrap3(Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;Ljava/lang/String;)V
     .locals 0
 
-    invoke-virtual {p0, p1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return-void
 .end method
@@ -219,7 +219,7 @@
 
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mContext:Landroid/content/Context;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mContext:Landroid/content/Context;
 
     iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSimStateIntentReceiver:Landroid/content/BroadcastReceiver;
 
@@ -251,11 +251,11 @@
     const/4 v0, 0x0
 
     :goto_0
-    iget v4, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mNumPhones:I
+    iget v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mNumPhones:I
 
     if-ge v0, v4, :cond_1
 
-    iget-object v4, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     invoke-virtual {v4, v0}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
 
@@ -267,7 +267,7 @@
 
     if-lez v4, :cond_0
 
-    iget-object v4, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     aget v5, v2, v6
 
@@ -315,9 +315,9 @@
 
     const-string/jumbo v4, "Broadcast network specifier set intent"
 
-    invoke-virtual {p0, v4}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v4}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
-    iget-object v4, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mContext:Landroid/content/Context;
+    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mContext:Landroid/content/Context;
 
     invoke-virtual {v4, v1}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
@@ -330,7 +330,7 @@
 
     const/4 v3, 0x0
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     invoke-virtual {v1, p1}, Lcom/android/internal/telephony/SubscriptionController;->getSubId(I)[I
 
@@ -356,9 +356,9 @@
 
     move-result-object v1
 
-    invoke-virtual {p0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     aget v2, v0, v3
 
@@ -382,13 +382,13 @@
 
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->resetConnectFailureCount(I)V
 
-    iget-object v2, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     invoke-virtual {v2}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultDataSubId()I
 
     move-result v1
 
-    iget-object v2, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     invoke-virtual {v2, v1}, Lcom/android/internal/telephony/SubscriptionController;->getPhoneId(I)I
 
@@ -396,7 +396,7 @@
 
     if-lez v0, :cond_0
 
-    iget v2, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mNumPhones:I
+    iget v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mNumPhones:I
 
     if-ge v0, v2, :cond_0
 
@@ -420,7 +420,7 @@
 
     move-result-object v2
 
-    invoke-virtual {p0, v2}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->enforceDds(I)V
 
@@ -440,7 +440,7 @@
     :cond_0
     const-string/jumbo v3, "Null data received in handleUnsolMaxDataAllowedChange"
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return-void
 
@@ -491,7 +491,7 @@
 
     move-result-object v3
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return-void
 
@@ -500,7 +500,7 @@
 
     move-result v3
 
-    iput v3, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mMaxActivePhones:I
+    iput v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mMaxActivePhones:I
 
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -512,7 +512,7 @@
 
     move-result-object v3
 
-    iget v4, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mMaxActivePhones:I
+    iget v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mMaxActivePhones:I
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
@@ -522,7 +522,7 @@
 
     move-result-object v3
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     :cond_3
     return-void
@@ -545,13 +545,13 @@
 .method private informDdsToRil(I)V
     .locals 5
 
-    iget-object v3, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     invoke-virtual {v3, p1}, Lcom/android/internal/telephony/SubscriptionController;->getPhoneId(I)I
 
     move-result v0
 
-    iget-object v3, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mContext:Landroid/content/Context;
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mContext:Landroid/content/Context;
 
     invoke-static {v3}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->getInstance(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;
 
@@ -565,7 +565,7 @@
 
     const-string/jumbo v3, "Oem hook service is not ready yet"
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return-void
 
@@ -573,7 +573,7 @@
     const/4 v1, 0x0
 
     :goto_0
-    iget v3, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mNumPhones:I
+    iget v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mNumPhones:I
 
     if-ge v1, v3, :cond_1
 
@@ -605,7 +605,7 @@
 
     move-result-object v3
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     invoke-virtual {v2, v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiRilInterface;->qcRilSendDDSInfo(II)V
 
@@ -651,7 +651,7 @@
 
     move-result-object v1
 
-    invoke-virtual {p0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return v0
 
@@ -668,7 +668,7 @@
 
     const/4 v1, -0x1
 
-    iget-object v3, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPrioritizedDcRequests:Ljava/util/List;
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPrioritizedDcRequests:Ljava/util/List;
 
     invoke-interface {v3}, Ljava/util/List;->size()I
 
@@ -676,7 +676,7 @@
 
     if-lez v3, :cond_0
 
-    iget-object v3, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPrioritizedDcRequests:Ljava/util/List;
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPrioritizedDcRequests:Ljava/util/List;
 
     invoke-interface {v3, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
@@ -768,7 +768,7 @@
 
     move-result-object v0
 
-    invoke-virtual {p0, v0}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     const/4 v0, 0x1
 
@@ -812,7 +812,7 @@
 
     move-result-object v2
 
-    invoke-virtual {p0, v2}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return v0
 
@@ -863,7 +863,7 @@
 
     move-result-object v3
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->isAnyVoiceCallActiveOnDevice()Z
 
@@ -873,7 +873,7 @@
 
     const-string/jumbo v3, "Wait for call end indication"
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return-void
 
@@ -886,7 +886,7 @@
 
     const-string/jumbo v3, "Wait for SIM to get READY"
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return-void
 
@@ -931,7 +931,7 @@
 
     move-result-object v3
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     new-instance v3, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher$2;
 
@@ -939,7 +939,7 @@
 
     int-to-long v4, v2
 
-    invoke-virtual {p0, v3, v4, v5}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
+    invoke-virtual {p0, v3, v4, v5}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->postDelayed(Ljava/lang/Runnable;J)Z
 
     goto :goto_0
 
@@ -962,7 +962,7 @@
 
     move-result-object v3
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     iget-boolean v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSendDdsSwitchDoneIntent:Z
 
@@ -980,7 +980,7 @@
 
     const-string/jumbo v3, "subscription"
 
-    iget-object v4, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     invoke-virtual {v4}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultDataSubId()I
 
@@ -994,16 +994,16 @@
 
     const-string/jumbo v3, "Broadcast dds switch done intent"
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
-    iget-object v3, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mContext:Landroid/content/Context;
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mContext:Landroid/content/Context;
 
     invoke-virtual {v3, v1}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
     :cond_4
     invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->resetConnectFailureCount(I)V
 
-    iget-object v3, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mActivePhoneRegistrants:[Landroid/os/RegistrantList;
+    iget-object v3, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mActivePhoneRegistrants:[Landroid/os/RegistrantList;
 
     aget-object v3, v3, p1
 
@@ -1021,7 +1021,7 @@
 
     move-result v0
 
-    iput v0, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mMaxActivePhones:I
+    iput v0, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mMaxActivePhones:I
 
     return-void
 .end method
@@ -1047,7 +1047,7 @@
 
     const/4 v4, 0x0
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
 
     aget-object v0, v1, p1
 
@@ -1090,7 +1090,7 @@
 
     move-result-object v1
 
-    invoke-virtual {p0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -1098,13 +1098,13 @@
 
     iput-wide v2, v0, Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;->lastRequested:J
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mCommandsInterfaces:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mCommandsInterfaces:[Lcom/android/internal/telephony/CommandsInterface;
 
     aget-object v1, v1, p1
 
     const/16 v2, 0x71
 
-    invoke-virtual {p0, v2, p1, v4}, Landroid/os/Handler;->obtainMessage(III)Landroid/os/Message;
+    invoke-virtual {p0, v2, p1, v4}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v2
 
@@ -1118,7 +1118,7 @@
 
     const/4 v4, 0x0
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
 
     aget-object v0, v1, p1
 
@@ -1149,7 +1149,7 @@
 
     move-result-object v1
 
-    invoke-virtual {p0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -1157,9 +1157,9 @@
 
     iput-wide v2, v0, Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;->lastRequested:J
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
-    iget-object v2, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneSubscriptions:[I
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneSubscriptions:[I
 
     aget v2, v2, p1
 
@@ -1169,13 +1169,13 @@
 
     if-eqz v1, :cond_1
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mCommandsInterfaces:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mCommandsInterfaces:[Lcom/android/internal/telephony/CommandsInterface;
 
     aget-object v1, v1, p1
 
     const/16 v2, 0x70
 
-    invoke-virtual {p0, v2}, Landroid/os/Handler;->obtainMessage(I)Landroid/os/Message;
+    invoke-virtual {p0, v2}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v2
 
@@ -1186,7 +1186,7 @@
     iput-boolean v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mWaitForDetachResponse:Z
 
     :cond_1
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mActivePhoneRegistrants:[Landroid/os/RegistrantList;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mActivePhoneRegistrants:[Landroid/os/RegistrantList;
 
     aget-object v1, v1, p1
 
@@ -1200,13 +1200,13 @@
 
     const/4 v9, 0x0
 
-    iget-object v7, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     invoke-virtual {v7}, Lcom/android/internal/telephony/SubscriptionController;->getDefaultDataSubId()I
 
     move-result v2
 
-    iget-object v7, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     invoke-virtual {v7, v2}, Lcom/android/internal/telephony/SubscriptionController;->getPhoneId(I)I
 
@@ -1232,7 +1232,7 @@
 
     move-result-object v7
 
-    invoke-virtual {p0, v7}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     const/4 v0, 0x0
 
@@ -1255,7 +1255,7 @@
 
     const-string/jumbo v7, "Voice call active. Waiting for call end"
 
-    invoke-virtual {p0, v7}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return-void
 
@@ -1292,7 +1292,7 @@
     :cond_2
     const-string/jumbo v7, "Error: empty result, EVENT_OEM_HOOK_SERVICE_READY"
 
-    invoke-virtual {p0, v7}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     goto :goto_0
 
@@ -1316,7 +1316,7 @@
     :cond_3
     const-string/jumbo v7, "Error: empty result, EVENT_UNSOL_MAX_DATA_ALLOWED_CHANGED"
 
-    invoke-virtual {p0, v7}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     goto :goto_0
 
@@ -1343,7 +1343,7 @@
     :sswitch_5
     const-string/jumbo v7, "EVENT_VOICE_CALL_ENDED"
 
-    invoke-virtual {p0, v7}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     invoke-direct {p0}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->isAnyVoiceCallActiveOnDevice()Z
 
@@ -1354,7 +1354,7 @@
     const/4 v3, 0x0
 
     :goto_1
-    iget v7, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mNumPhones:I
+    iget v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mNumPhones:I
 
     if-ge v3, v7, :cond_0
 
@@ -1370,7 +1370,7 @@
 
     if-eqz v7, :cond_4
 
-    invoke-virtual {p0, v3}, Lcom/android/internal/telephony/PhoneSwitcher;->resendDataAllowed(I)V
+    invoke-virtual {p0, v3}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->resendDataAllowed(I)V
 
     goto :goto_0
 
@@ -1382,7 +1382,7 @@
     :sswitch_6
     const-string/jumbo v7, "OEM_DDS_SETTING_EVENT_CHANGE"
 
-    invoke-virtual {p0, v7}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     const-string/jumbo v7, "oemSetting"
 
@@ -1395,7 +1395,7 @@
     :sswitch_7
     const-string/jumbo v7, "EVENT_ALLOW_DATA_FALSE_RESPONSE"
 
-    invoke-virtual {p0, v7}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v7}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     iput-boolean v9, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mWaitForDetachResponse:Z
 
@@ -1481,15 +1481,15 @@
 
     move-result-object v1
 
-    invoke-virtual {p0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhones:[Lcom/android/internal/telephony/Phone;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhones:[Lcom/android/internal/telephony/Phone;
 
     array-length v1, v1
 
     if-le v1, v3, :cond_0
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
 
     aget-object v1, v1, p1
 
@@ -1497,7 +1497,7 @@
 
     iput-boolean v2, v1, Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;->active:Z
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
 
     rsub-int/lit8 v2, p1, 0x1
 
@@ -1508,15 +1508,15 @@
     :cond_0
     const-string/jumbo v1, "send OEM_DDS_SETTING_EVENT_CHANGE"
 
-    invoke-virtual {p0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     const v1, 0x889900
 
-    invoke-virtual {p0, v1}, Landroid/os/Handler;->obtainMessage(I)Landroid/os/Message;
+    invoke-virtual {p0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v0
 
-    invoke-virtual {p0, v0}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+    invoke-virtual {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->sendMessage(Landroid/os/Message;)Z
 
     return-void
 .end method
@@ -1532,7 +1532,7 @@
 
     invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/telephony/PhoneSwitcher;->isEmergency()Z
+    invoke-virtual/range {p0 .. p0}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->isEmergency()Z
 
     move-result v18
 
@@ -1544,7 +1544,7 @@
 
     move-object/from16 v1, v18
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return-void
 
@@ -1553,7 +1553,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     move-object/from16 v18, v0
 
@@ -1563,7 +1563,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     move-object/from16 v18, v0
 
@@ -1595,7 +1595,7 @@
 
     move-object/from16 v0, p0
 
-    iput v3, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mDefaultDataSubscription:I
+    iput v3, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mDefaultDataSubscription:I
 
     const/16 v18, 0x1
 
@@ -1614,7 +1614,7 @@
     :cond_1
     move-object/from16 v0, p0
 
-    iget v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mDefaultDataSubscription:I
+    iget v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mDefaultDataSubscription:I
 
     move/from16 v18, v0
 
@@ -1645,7 +1645,7 @@
 
     move-object/from16 v0, p0
 
-    iget v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mDefaultDataSubscription:I
+    iget v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mDefaultDataSubscription:I
 
     move/from16 v19, v0
 
@@ -1673,7 +1673,7 @@
 
     move-object/from16 v0, p0
 
-    iput v3, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mDefaultDataSubscription:I
+    iput v3, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mDefaultDataSubscription:I
 
     const/16 v18, 0x1
 
@@ -1718,14 +1718,14 @@
 
     move-object/from16 v1, v18
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     const/4 v8, 0x0
 
     :goto_0
     move-object/from16 v0, p0
 
-    iget v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mNumPhones:I
+    iget v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mNumPhones:I
 
     move/from16 v18, v0
 
@@ -1735,7 +1735,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
+    iget-object v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mSubscriptionController:Lcom/android/internal/telephony/SubscriptionController;
 
     move-object/from16 v18, v0
 
@@ -1747,7 +1747,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneSubscriptions:[I
+    iget-object v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneSubscriptions:[I
 
     move-object/from16 v18, v0
 
@@ -1783,7 +1783,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneSubscriptions:[I
+    iget-object v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneSubscriptions:[I
 
     move-object/from16 v19, v0
 
@@ -1809,7 +1809,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneSubscriptions:[I
+    iget-object v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneSubscriptions:[I
 
     move-object/from16 v18, v0
 
@@ -1851,7 +1851,7 @@
 
     move-object/from16 v1, v18
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     new-instance v12, Ljava/util/ArrayList;
 
@@ -1859,7 +1859,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mPrioritizedDcRequests:Ljava/util/List;
+    iget-object v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPrioritizedDcRequests:Ljava/util/List;
 
     move-object/from16 v18, v0
 
@@ -1930,7 +1930,7 @@
 
     move-object/from16 v0, p0
 
-    iget v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mMaxActivePhones:I
+    iget v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mMaxActivePhones:I
 
     move/from16 v19, v0
 
@@ -1953,7 +1953,7 @@
 
     move-object/from16 v0, p0
 
-    iget v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mDefaultDataSubscription:I
+    iget v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mDefaultDataSubscription:I
 
     move/from16 v19, v0
 
@@ -1969,14 +1969,14 @@
 
     move-object/from16 v1, v18
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     const/4 v8, 0x0
 
     :goto_1
     move-object/from16 v0, p0
 
-    iget v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mNumPhones:I
+    iget v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mNumPhones:I
 
     move/from16 v18, v0
 
@@ -2008,7 +2008,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneSubscriptions:[I
+    iget-object v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneSubscriptions:[I
 
     move-object/from16 v19, v0
 
@@ -2032,7 +2032,7 @@
 
     move-object/from16 v1, v18
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     add-int/lit8 v8, v8, 0x1
 
@@ -2045,7 +2045,7 @@
 
     move-object/from16 v1, v18
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     invoke-interface {v12}, Ljava/lang/Iterable;->iterator()Ljava/util/Iterator;
 
@@ -2088,7 +2088,7 @@
 
     move-object/from16 v1, v18
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     goto :goto_2
 
@@ -2102,7 +2102,7 @@
     :goto_3
     move-object/from16 v0, p0
 
-    iget v0, v0, Lcom/android/internal/telephony/PhoneSwitcher;->mNumPhones:I
+    iget v0, v0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mNumPhones:I
 
     move/from16 v18, v0
 
@@ -2205,11 +2205,11 @@
 
     iget v0, p1, Landroid/os/Message;->arg1:I
 
-    iget-object v1, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mCommandsInterfaces:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v1, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mCommandsInterfaces:[Lcom/android/internal/telephony/CommandsInterface;
 
     aget-object v1, v1, v0
 
-    iget-object v2, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
+    iget-object v2, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneStates:[Lcom/android/internal/telephony/PhoneSwitcher$PhoneState;
 
     aget-object v2, v2, v0
 
@@ -2219,7 +2219,7 @@
 
     const/4 v4, 0x0
 
-    invoke-virtual {p0, v3, v0, v4}, Landroid/os/Handler;->obtainMessage(III)Landroid/os/Message;
+    invoke-virtual {p0, v3, v0, v4}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v3
 
@@ -2245,9 +2245,7 @@
 
     if-eqz v6, :cond_0
 
-    nop
-
-    nop
+    check-cast v2, Landroid/net/StringNetworkSpecifier;
 
     iget-object v4, v2, Landroid/net/StringNetworkSpecifier;->specifier:Ljava/lang/String;
 
@@ -2258,7 +2256,7 @@
 
     if-eqz v6, :cond_1
 
-    iget v5, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mDefaultDataSubscription:I
+    iget v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mDefaultDataSubscription:I
 
     :goto_0
     const/4 v3, -0x1
@@ -2278,7 +2276,7 @@
 
     if-eqz v6, :cond_2
 
-    iget v5, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mDefaultDataSubscription:I
+    iget v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mDefaultDataSubscription:I
 
     goto :goto_0
 
@@ -2325,7 +2323,7 @@
     const/4 v1, 0x0
 
     :goto_1
-    iget v6, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mNumPhones:I
+    iget v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mNumPhones:I
 
     if-ge v1, v6, :cond_4
 
@@ -2349,7 +2347,7 @@
 
     move-result-object v6
 
-    iget-object v7, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneSubscriptions:[I
+    iget-object v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneSubscriptions:[I
 
     aget v7, v7, v1
 
@@ -2361,9 +2359,9 @@
 
     move-result-object v6
 
-    invoke-virtual {p0, v6}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
-    iget-object v6, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mPhoneSubscriptions:[I
+    iget-object v6, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mPhoneSubscriptions:[I
 
     aget v6, v6, v1
 
@@ -2402,7 +2400,7 @@
 
     move-result-object v6
 
-    iget v7, p0, Lcom/android/internal/telephony/PhoneSwitcher;->mDefaultDataSubscription:I
+    iget v7, p0, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->mDefaultDataSubscription:I
 
     invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
@@ -2422,7 +2420,7 @@
 
     move-result-object v6
 
-    invoke-virtual {p0, v6}, Lcom/android/internal/telephony/PhoneSwitcher;->log(Ljava/lang/String;)V
+    invoke-virtual {p0, v6}, Lcom/qualcomm/qti/internal/telephony/QtiPhoneSwitcher;->log(Ljava/lang/String;)V
 
     return v3
 

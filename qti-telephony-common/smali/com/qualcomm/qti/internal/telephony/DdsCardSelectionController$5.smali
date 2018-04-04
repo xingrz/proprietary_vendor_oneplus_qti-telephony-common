@@ -483,7 +483,7 @@
 
     const/4 v8, 0x0
 
-    invoke-static {v6, v4, v7, v8}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-wrap16(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;IILjava/lang/String;)V
+    invoke-static {v6, v4, v7, v8}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-wrap17(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;IILjava/lang/String;)V
 
     const/4 v6, 0x1
 
