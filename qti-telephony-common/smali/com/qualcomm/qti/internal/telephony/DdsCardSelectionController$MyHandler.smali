@@ -40,7 +40,6 @@
 
     packed-switch v13, :pswitch_data_0
 
-    :pswitch_0
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -73,7 +72,7 @@
     :goto_0
     return-void
 
-    :pswitch_1
+    :pswitch_0
     move-object/from16 v0, p0
 
     iget-object v14, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -92,7 +91,7 @@
 
     goto :goto_0
 
-    :pswitch_2
+    :pswitch_1
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -105,7 +104,7 @@
 
     goto :goto_0
 
-    :pswitch_3
+    :pswitch_2
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -144,7 +143,7 @@
 
     goto :goto_0
 
-    :pswitch_4
+    :pswitch_3
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -179,7 +178,7 @@
 
     goto :goto_0
 
-    :pswitch_5
+    :pswitch_4
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -188,7 +187,7 @@
 
     goto :goto_0
 
-    :pswitch_6
+    :pswitch_5
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -245,7 +244,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_7
+    :pswitch_6
     move-object/from16 v0, p1
 
     iget-object v2, v0, Landroid/os/Message;->obj:Ljava/lang/Object;
@@ -290,7 +289,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_8
+    :pswitch_7
     move-object/from16 v0, p1
 
     iget-object v2, v0, Landroid/os/Message;->obj:Ljava/lang/Object;
@@ -332,7 +331,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_9
+    :pswitch_8
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -365,7 +364,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_a
+    :pswitch_9
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -490,7 +489,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_b
+    :pswitch_a
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -616,7 +615,7 @@
 
     goto :goto_1
 
-    :pswitch_c
+    :pswitch_b
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -738,7 +737,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_d
+    :pswitch_c
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -759,7 +758,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_e
+    :pswitch_d
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -776,7 +775,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_f
+    :pswitch_e
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -878,7 +877,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_10
+    :pswitch_f
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -947,7 +946,7 @@
 
     goto/16 :goto_0
 
-    :pswitch_11
+    :pswitch_10
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -992,7 +991,7 @@
 
     goto :goto_2
 
-    :pswitch_12
+    :pswitch_11
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -1040,12 +1039,50 @@
 
     goto/16 :goto_0
 
-    :pswitch_13
+    :pswitch_12
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
 
     invoke-static {v13}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-wrap16(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
+
+    goto/16 :goto_0
+
+    :pswitch_13
+    move-object/from16 v0, p0
+
+    iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
+
+    const-string/jumbo v14, "EVENT_RESET_DDS receive"
+
+    invoke-static {v13, v14}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-wrap9(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Ljava/lang/String;)V
+
+    move-object/from16 v0, p0
+
+    iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
+
+    invoke-static {v13}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-wrap0(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)Z
+
+    move-result v13
+
+    if-eqz v13, :cond_a
+
+    return-void
+
+    :cond_a
+    move-object/from16 v0, p0
+
+    iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
+
+    const-string/jumbo v14, "EVENT_RESET_DDS handleTimeOut"
+
+    invoke-static {v13, v14}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-wrap9(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;Ljava/lang/String;)V
+
+    move-object/from16 v0, p0
+
+    iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
+
+    invoke-static {v13}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->-wrap8(Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;)V
 
     goto/16 :goto_0
 
@@ -1075,7 +1112,7 @@
 
     const/4 v14, 0x1
 
-    if-ne v13, v14, :cond_b
+    if-ne v13, v14, :cond_c
 
     const/4 v10, 0x0
 
@@ -1084,7 +1121,7 @@
 
     move-result v13
 
-    if-eqz v13, :cond_a
+    if-eqz v13, :cond_b
 
     move-object/from16 v0, p0
 
@@ -1108,7 +1145,7 @@
 
     invoke-virtual/range {v13 .. v16}, Lcom/qualcomm/qcrilhook/QcRilHook;->oemAPSendRequest2Modem(Lcom/qualcomm/qcrilhook/QcRilHook$ApCmd2ModemType;[BI)Landroid/os/AsyncResult;
 
-    :cond_a
+    :cond_b
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController$MyHandler;->this$0:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
@@ -1117,7 +1154,7 @@
 
     goto/16 :goto_0
 
-    :cond_b
+    :cond_c
     const/4 v10, 0x1
 
     goto :goto_3
@@ -1141,13 +1178,14 @@
 
     :pswitch_data_0
     .packed-switch 0xa
+        :pswitch_0
         :pswitch_1
+        :pswitch_6
         :pswitch_2
-        :pswitch_7
         :pswitch_3
         :pswitch_4
         :pswitch_5
-        :pswitch_6
+        :pswitch_7
         :pswitch_8
         :pswitch_9
         :pswitch_a
@@ -1156,13 +1194,12 @@
         :pswitch_d
         :pswitch_e
         :pswitch_f
-        :pswitch_10
+        :pswitch_11
         :pswitch_12
         :pswitch_13
-        :pswitch_0
         :pswitch_15
         :pswitch_14
-        :pswitch_11
+        :pswitch_10
         :pswitch_16
     .end packed-switch
 

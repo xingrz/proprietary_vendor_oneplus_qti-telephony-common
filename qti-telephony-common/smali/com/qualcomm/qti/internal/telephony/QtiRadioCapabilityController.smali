@@ -3062,15 +3062,15 @@
 
     iget-object v4, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mDDSSC:Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
 
-    iget-object v5, p0, Lcom/qualcomm/qti/internal/telephony/QtiRadioCapabilityController;->mContext:Landroid/content/Context;
+    invoke-virtual {v4, p1}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->isSoftSIM(I)Z
 
-    invoke-virtual {v4, p1, v5}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->getVirtualIccid(ILandroid/content/Context;)Ljava/lang/String;
-
-    move-result-object v1
+    move-result v1
 
     if-ne p1, v0, :cond_3
 
-    if-nez v1, :cond_3
+    xor-int/lit8 v4, v1, 0x1
+
+    if-eqz v4, :cond_3
 
     invoke-static {}, Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;->getInstance()Lcom/qualcomm/qti/internal/telephony/DdsCardSelectionController;
 
